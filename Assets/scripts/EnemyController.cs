@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemyController : MonoBehaviour {
 
 	[SerializeField]
-	private ScoreController scoreCont;
+	private ParticleSystem particles;
 
 	[SerializeField]
 	private float moveSpeed;
@@ -20,8 +20,17 @@ public class EnemyController : MonoBehaviour {
 	private void OnTriggerEnter2D (Collider2D trig) {
 		if (trig.tag == "projectile") {
 			Destroy (gameObject);
+			SpawnParticles ();
 			Destroy (trig.gameObject);
 			ScoreController.instance.IncrementScore ();
 		}
+	}
+
+	private void SpawnParticles () {
+		Instantiate (
+			particles,
+			transform.position,
+			Quaternion.identity
+		);
 	}
 }
