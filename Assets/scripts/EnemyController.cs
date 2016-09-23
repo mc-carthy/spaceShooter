@@ -4,6 +4,9 @@ using System.Collections;
 public class EnemyController : MonoBehaviour {
 
 	[SerializeField]
+	private ScoreController scoreCont;
+
+	[SerializeField]
 	private float moveSpeed;
 
 	private void Update () {
@@ -18,6 +21,7 @@ public class EnemyController : MonoBehaviour {
 		if (trig.tag == "projectile") {
 			Destroy (gameObject);
 			Destroy (trig.gameObject);
+			ScoreController.instance.IncrementScore ();
 		}
 	}
 }
