@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
@@ -43,5 +44,15 @@ public class PlayerController : MonoBehaviour {
 
 	private void InstantiateProjectile () {
 		Instantiate (projectile, transform.position, Quaternion.identity);
+	}
+
+	private void OnTriggerEnter2D (Collider2D trig) {
+		if (trig.tag == "enemy") {
+			
+		}
+	}
+
+	private void RestartLevel () {
+		SceneManager.LoadScene (SceneManager.GetActiveScene ().name, LoadSceneMode.Single);
 	}
 }
